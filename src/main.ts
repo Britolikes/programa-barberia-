@@ -39,7 +39,7 @@ function renderHome() {
       </div>
     </nav>
     <main>
-      <section class="hero"><div class="hero-content"><h1>Eleva tu Presencia</h1><p>Maestría en cada corte, distinción en cada detalle.</p><button id="${currentUser ? 'hero-dash' : 'hero-auth'}" class="btn btn-primary">${currentUser ? 'Ver mi Agenda' : 'Reserva tu Lugar'}</button></div></section>
+      <section class="hero"><div class="hero-content"><h1>Eleva tu Presencia</h1><p class="hero-slogan">Maestría en cada corte, <span>distinción en cada detalle.</span></p><button id="${currentUser ? 'hero-dash' : 'hero-auth'}" class="btn btn-primary">${currentUser ? 'Ver mi Agenda' : 'Reserva tu Lugar'}</button></div></section>
       
       <section id="servicios" class="reveal" style="padding: 10rem 2rem; background: #f8fafc;">
         <div style="max-width: 1200px; margin: 0 auto;">
@@ -93,16 +93,38 @@ function renderHome() {
       </section>
 
       <section id="info" class="reveal barber-pole-border" style="padding: 10rem 2rem; background: #f8fafc;">
-        <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4rem;">
-          <div>
-            <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Visítanos</h2>
-            <p style="color: var(--text-muted); line-height: 2; margin-bottom: 3rem;">Estamos ubicados en el corazón de la ciudad, listos para brindarte la mejor experiencia en cuidado personal masculino.</p>
-            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">${Icons.map} <span>Calle de la Elegancia #123, Distrito Central</span></div>
-            <div style="display: flex; align-items: center; gap: 1rem;">${Icons.clock} <span>Lun - Sáb: 09:00 - 20:00</span></div>
+        <div style="max-width: 1200px; margin: 0 auto;">
+          <div style="text-align: center; margin-bottom: 5rem;">
+            <h2 style="font-size: 3rem; margin-bottom: 1.5rem;">Ubicación de Élite</h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Encuéntranos en el distrito más exclusivo de la ciudad.</p>
           </div>
-          <div style="border-radius: 20px; overflow: hidden; height: 350px; background: #cbd5e1;">
-            <!-- Mapa simulado -->
-            <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #e2e8f0; color: #64748b; font-weight: 700;">MAPA INTERACTIVO</div>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 0; background: white; border-radius: 30px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.05);">
+            <div style="padding: 5rem; display: flex; flex-direction: column; justify-content: center;">
+              <div class="icon-container" style="background: var(--primary); color: white;">${Icons.map}</div>
+              <h3 style="font-size: 2rem; margin-bottom: 1.5rem;">Nuestra Sede</h3>
+              <p style="color: var(--text-muted); line-height: 2; margin-bottom: 2.5rem; font-size: 1.1rem;">Calle de la Elegancia #123, Edificio Royal, Piso 1.<br>Distrito Central, Ciudad Capital.</p>
+              
+              <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 3rem;">
+                <div style="display: flex; align-items: center; gap: 1rem; color: var(--text-main); font-weight: 600;">
+                  <div style="color: var(--primary);">${Icons.clock}</div> Lun - Sáb: 09:00 AM - 08:00 PM
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem; color: var(--text-main); font-weight: 600;">
+                  <div style="color: var(--primary);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div> +1 800 BARBER
+                </div>
+              </div>
+
+              <a href="https://maps.google.com" target="_blank" class="btn btn-primary" style="text-align: center; padding: 1.2rem;">Cómo llegar ahora</a>
+            </div>
+            
+            <div style="height: 600px; min-height: 400px; position: relative;">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.01923456789!2d-122.4194155!3d37.7749295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809c6c8f4459%3A0xb10ed6d9b5050c58!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1634567890123!5m2!1sen!2sus" 
+                style="width: 100%; height: 100%; border:0; filter: grayscale(0.2) contrast(1.1);" 
+                allowfullscreen="" 
+                loading="lazy">
+              </iframe>
+            </div>
           </div>
         </div>
       </section>
@@ -134,3 +156,13 @@ function renderDashboard() {
 }
 
 renderHome();
+
+// Sensor de scroll para cambiar el color de la navbar
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('.navbar');
+  if (window.scrollY > 50) {
+    nav?.classList.add('scrolled');
+  } else {
+    nav?.classList.remove('scrolled');
+  }
+});
