@@ -3,9 +3,12 @@ import type { Barber, User } from '../types'
 export function renderBarberDashboard(app: HTMLElement, selectedBarber: Barber | null, barbers: Barber[], homeCallback: () => void) {
   if (!selectedBarber) {
     app.innerHTML = `
-        <a href="#" class="nav-logo" id="home-link">
+      <nav class="navbar" style="background: #0f172a; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 1rem 4rem;">
+        <a href="#" class="nav-logo" id="home-link" style="display: flex; align-items: center; gap: 1rem;">
           <img src="/logo.png" alt="Barberia Logo" style="height: 45px; width: auto; filter: invert(1);">
+          <span style="font-size: 1.2rem; letter-spacing: 2px; font-weight: 800; color: white;">BARBERÍA PREMIUM</span>
         </a>
+      </nav>
       
       <div style="position: relative; min-height: calc(100vh - 70px); padding: 6rem 2rem 5rem; display: flex; flex-direction: column; align-items: center; overflow: hidden;">
         <!-- Fondo con Imagen y Overlay -->
@@ -58,8 +61,9 @@ export function renderBarberDashboard(app: HTMLElement, selectedBarber: Barber |
 
   app.innerHTML = `
     <nav class="navbar" style="background: #0f172a; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 1rem 4rem;">
-      <a href="#" class="nav-logo" id="home-link">
-          <img src="/logo.png" alt="Barberia Logo" style="height: 60px; width: auto; filter: invert(1); opacity: 0.8;">
+      <a href="#" class="nav-logo" id="home-link" style="display: flex; align-items: center; gap: 1rem;">
+        <img src="/logo.png" alt="Barberia Logo" style="height: 45px; width: auto; filter: invert(1);">
+        <span style="font-size: 1.2rem; letter-spacing: 2px; font-weight: 800; color: white;">BARBERÍA PREMIUM</span>
       </a>
       <div class="nav-links">
         <button id="exit-dash" style="background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; color: #ef4444; padding: 0.6rem 1.5rem; border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 0.5rem;">

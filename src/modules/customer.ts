@@ -7,8 +7,9 @@ const Icons = {
 export function renderReservationView(app: HTMLElement, selectedBarber: Barber, barbers: Barber[], homeCallback: () => void) {
   app.innerHTML = `
     <nav class="navbar" style="background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0,0,0,0.05); padding: 1rem 4rem;">
-      <a href="#" class="nav-logo" id="home-link">
+      <a href="#" class="nav-logo" id="home-link" style="display: flex; align-items: center; gap: 1rem;">
         <img src="/logo.png" alt="Barberia Logo" style="height: 45px; width: auto;">
+        <span style="font-size: 1.2rem; letter-spacing: 2px; font-weight: 800; color: #0f172a;">BARBERÍA PREMIUM</span>
       </a>
       <div class="nav-links">
         <button id="back-to-home" style="background: none; border: 1px solid #0f172a; color: #0f172a; padding: 0.6rem 1.5rem; border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 0.5rem;">

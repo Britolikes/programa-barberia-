@@ -37,9 +37,17 @@ function renderHome() {
       </a>
       <div class="nav-links">
         <a href="#servicios">Servicios</a>
-        <a href="#barberos">Barberos</a>
+        <div class="dropdown" id="barberos-dropdown">
+          <a href="javascript:void(0)" style="display: flex; align-items: center; gap: 0.5rem;">
+            Barberos 
+            <svg id="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="transition: transform 0.3s ease;"><path d="m6 9 6 6 6-6"/></svg>
+          </a>
+          <div class="dropdown-content" id="dropdown-menu">
+            ${barbers.map(b => `<div class="dropdown-item barber-direct" data-id="${b.id}">${b.name}</div>`).join('')}
+          </div>
+        </div>
         <a href="#info">Horarios</a>
-        <button id="barber-access" class="btn btn-outline" style="border-color: white; color: white;">Soy Barbero</button>
+        <button id="barber-access" class="btn btn-outline" style="border-color: white; color: white; transition: all 0.3s ease;">Soy Barbero</button>
       </div>
     </nav>
     <main>
@@ -213,6 +221,32 @@ function renderHome() {
   document.querySelectorAll('.reserve-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const id = btn.getAttribute('data-id');
+      const barber = barbers.find(b => b.id === id);
+      if (barber) renderReservationView(app, barber, barbers, renderHome);
+    });
+  });
+
+  // Lógica del Dropdown de Barberos
+  const dropdownToggle = document.querySelector('#barberos-dropdown');
+  const dropdownMenu = document.querySelector('#dropdown-menu') as HTMLElement;
+  const chevron = document.querySelector('#dropdown-chevron') as HTMLElement;
+
+  dropdownToggle?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = dropdownMenu.style.display === 'block';
+    dropdownMenu.style.display = isOpen ? 'none' : 'block';
+    if (chevron) chevron.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+  });
+
+  // Cerrar al hacer clic fuera
+  window.addEventListener('click', () => {
+    if (dropdownMenu) dropdownMenu.style.display = 'none';
+    if (chevron) chevron.style.transform = 'rotate(0deg)';
+  });
+
+  document.querySelectorAll('.barber-direct').forEach(item => {
+    item.addEventListener('click', () => {
+      const id = item.getAttribute('data-id');
       const barber = barbers.find(b => b.id === id);
       if (barber) renderReservationView(app, barber, barbers, renderHome);
     });
