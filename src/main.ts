@@ -28,6 +28,15 @@ const services: Service[] = [
 
 const app = document.querySelector<HTMLDivElement>('#app')!
 
+const slogans = [
+  "Maestría en cada corte, <span>distinción en cada detalle.</span>",
+  "Tu estilo es nuestra firma, <span>tu confianza nuestra meta.</span>",
+  "Tradición que evoluciona, <span>perfección que se siente.</span>",
+  "Donde el arte se encuentra <span>con la elegancia masculina.</span>"
+];
+
+const tickerKeywords = ["Precisión", "Estilo", "Tradición", "Excelencia", "Vanguardia", "Elegancia"];
+
 function renderHome() {
   app.innerHTML = `
     <nav class="navbar">
@@ -47,11 +56,25 @@ function renderHome() {
           </div>
         </div>
         <a href="#info">Horarios</a>
-        <button id="barber-access" class="btn btn-outline" style="border-color: white; color: white; transition: all 0.3s ease;">Soy Barbero</button>
+        <button id="barber-access" class="btn btn-outline">Soy Barbero</button>
       </div>
     </nav>
     <main>
-      <section class="hero"><div class="hero-content"><h1>Eleva tu Presencia</h1><p class="hero-slogan">Maestría en cada corte, <span>distinción en cada detalle.</span></p><button id="hero-reserve" class="btn btn-primary">Reserva tu Lugar</button></div></section>
+      <section class="hero">
+        <div class="hero-content">
+          <h1 class="animate-first">Eleva tu Presencia</h1>
+          <div class="carousel-container animate-first">
+            ${slogans.map((s, i) => `<p class="carousel-text ${i === 0 ? 'active' : ''}">${s}</p>`).join('')}
+          </div>
+          <button id="hero-reserve" class="btn btn-primary animate-first" style="animation-delay: 0.3s;">Reserva tu Lugar</button>
+        </div>
+      </section>
+
+      <div class="horizontal-ticker">
+        <div class="ticker-track">
+          ${[...tickerKeywords, ...tickerKeywords].map(word => `<span class="ticker-item">${word}</span>`).join('')}
+        </div>
+      </div>
       
       <section id="services" class="barber-pole-border" style="padding: 10rem 2rem; background: linear-gradient(to bottom, #f8fafc, #ffffff);">
         <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
@@ -238,6 +261,27 @@ function renderHome() {
     if (chevron) chevron.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
   });
 
+  // Lógica del Carrusel de Textos
+  let currentSlogan = 0;
+  const sloganTexts = document.querySelectorAll('.carousel-text');
+  
+  setInterval(() => {
+    const activeSlogan = sloganTexts[currentSlogan] as HTMLElement;
+    activeSlogan.classList.remove('active');
+    activeSlogan.classList.add('exit');
+    
+    currentSlogan = (currentSlogan + 1) % sloganTexts.length;
+    
+    const nextSlogan = sloganTexts[currentSlogan] as HTMLElement;
+    nextSlogan.classList.remove('exit');
+    nextSlogan.classList.add('active');
+    
+    // Limpiar clase exit después de la animación
+    setTimeout(() => {
+      activeSlogan.classList.remove('exit');
+    }, 800);
+  }, 4000);
+
   // Cerrar al hacer clic fuera
   window.addEventListener('click', () => {
     if (dropdownMenu) dropdownMenu.style.display = 'none';
@@ -270,16 +314,14 @@ window.addEventListener('scroll', () => {
     if (logo) logo.style.filter = 'none';
     if (logoText) logoText.style.color = '#0f172a';
     if (barberBtn) {
-      barberBtn.style.borderColor = '#0f172a';
-      barberBtn.style.color = '#0f172a';
+      // Los colores ahora se manejan por CSS mediante la clase .scrolled del padre
     }
   } else {
     nav?.classList.remove('scrolled');
     if (logo) logo.style.filter = 'invert(1)';
     if (logoText) logoText.style.color = 'white';
     if (barberBtn) {
-      barberBtn.style.borderColor = 'white';
-      barberBtn.style.color = 'white';
+      // Los colores ahora se manejan por CSS mediante la clase .scrolled del padre
     }
   }
 });
